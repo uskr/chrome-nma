@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Prowl options</title>
+		<title>Notify My Android options</title>
 		<script>
 		function restore() {
 			document.getElementById('apikey').value = localStorage['apikey'] || '';
@@ -11,13 +11,13 @@
 
 			// TODO: move this elsewhere, there might be more circumstances where the browser action might have a title/badge later
 			chrome.browserAction.setBadgeText({'text': ''});
-			chrome.browserAction.setTitle({'title': 'Prowl'});
+			chrome.browserAction.setTitle({'title': 'NotifyMyAndroid'});
 		}
 		</script>
 	</head>
 	<body onload="restore()">
-		<h1>Prowl</h1>
-		<label for="apikey">API Key:</label>
+		<h1>Notify My Android</h1>
+		<label for="apikey">API Key (separate using comma for multiple keys):</label>
 		<input id="apikey">
 		<button onclick="save()">Save</button>
 	</body>
