@@ -50,11 +50,12 @@
         function sendMessage(text) {
             var notification = {
                 'apikey': localStorage['apikey'],
-                'name': "Chrome Send",
+                'name': "NotifyMyAndroid Extension",
                 'text': text
             };
-            sendProwl(notification);
-            $('msg').innerHTML = 'Sending notification.  ' + text;
+            $('msg').innerHTML = 'Sending notification.';
+            sendNMA(notification);
+            $('msg').innerHTML = 'Sent.';            
             $('inputs').style.display = "none";
         }
 		</script>
