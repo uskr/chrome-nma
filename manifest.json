@@ -1,4 +1,13 @@
 {
+   "name": "NotifyMyAndroid",
+   "version": "0.1",
+   "manifest_version" : 2,
+   "description": "Sends a link to the currently visited page as a push notification to your Android device.",
+   "icons": {
+      "128": "icon128.png",
+      "96": "icon96.png"
+   },
+
 	"content_scripts": [
 
                 {
@@ -15,14 +24,9 @@
       "default_title": "NotifyMyAndroid",
       "default_popup": "popup.html"
    },
-   "description": "Sends a link to the currently visited page as a push notification to your Android device.",
-   "icons": {
-      "128": "icon128.png",
-      "96": "icon96.png"
-   },
-   "name": "NotifyMyAndroid",
+
    "options_page": "options.html",
-   "background_page": "background.html",
+   "background": { "scripts": ["background.js"] },
    "permissions": [
 
                 "tabs",
@@ -31,6 +35,5 @@
 
                 "https://*/"
 
-        ],
-   "version": "1.0"
+        ]
 }
