@@ -1,9 +1,8 @@
-var selection_callbacks = [];
-function getSelection(callback) {
-    selection_callbacks.push(callback);
-    chrome.tabs.executeScript(null, { file: "getSelection.js" });
-};
-chrome.extension.onRequest.addListener(function (request) {
-    var callback = selection_callbacks.shift();
-    callback(request);
-});
+var settings = new Store("settings", {});
+
+chrome.extension.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.msg == "gpmeGetOptions") {
+    	sendResponse(settings.toObject());
+    }
+  });

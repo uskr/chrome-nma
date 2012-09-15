@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Style copied from Chrome to Phone -->
-    <!-- The original code and design was copied from https://bitbucket.org/anders/chrome-prowl -->
-    <script src="notifymyandroid.js"></script>
+    <script src="../js/notifymyandroid.js"></script>
     <style type="text/css">
         body
         {
@@ -20,51 +18,12 @@
             color: black;
         }
     </style>
-    <script type="text/javascript">
-        function $(x) { return document.getElementById(x); }
-
-        function load() {
-            if (localStorage['apikey']) {
-                chrome.tabs.getSelected(null, function (tab) {
-                    var urlmsg = $('urlid');
-
-                    urlmsg.value = tab.url;
-
-                    chrome.extension.getBackgroundPage().getSelection(function (text) {
-                        var txt = $('freetext');
-                        txt.innerHTML = text;
-                    });
-                });
-            } else {
-                $('msg').innerHTML = 'API key not configured.';
-            }
-        }
-        function sendURL() {
-            var txt = $('urlid');
-            sendMessage(txt.value);
-        }
-        function sendText() {
-            var txt = $('freetext');
-            sendMessage(txt.value);
-        }
-        function sendMessage(text) {
-            var notification = {
-                'apikey': localStorage['apikey'],
-                'name': "NotifyMyAndroid Extension",
-                'text': text
-            };
-            $('msg').innerHTML = 'Sending notification.';
-            sendNMA(notification);
-            $('msg').innerHTML = 'Sent.';            
-            $('inputs').style.display = "none";
-        }
-		</script>
 </head>
-<body onload="load()">
+<body>
     <table>
         <tr>
             <td>
-                <img src="icon96.png" style="margin-right: 4px; width: 48px; height: 48px;" />
+                <img src="../assets/icon96.png" style="margin-right: 4px; width: 48px; height: 48px;" />
             </td>
             <td width="100%" valign="middle">
                 <b>
@@ -74,21 +33,13 @@
                 <div id="inputs">
                     <div>
                         <input type="text" id="urlid" />
-                        <input type="button" onclick="sendURL()" value="Send the above URL" />
+                        <input id='sendURL' type="button" value="Send the above URL" />
                     </div>
                     <div>
                         <textarea id="freetext"></textarea>
-                        <input type="button" onclick="sendText()" value="Send the above text" />
+                        <input id='sendText' type="button" value="Send the above text" />
                     </div>
-                    <p>
-                        <a id="options" href="#" onclick="window.open('options.html')" style="color: gray;">
-                            Options</a>
-                    </p>
                 </div>
-            </td>
-            <td valign="top">
-                <a href="#" onclick="window.close()">
-                    <img src="popup_close.png" style="margin: 2px;"></a>
             </td>
         </tr>
     </table>
