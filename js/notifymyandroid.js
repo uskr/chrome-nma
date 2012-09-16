@@ -13,10 +13,10 @@ function sendNMA(notification) {
 	var params = 'apikey='+ encodeURIComponent(notification.apikey) +
 	'&application='+ encodeURIComponent('Chrome') +
 	'&event='+ encodeURIComponent(notification.name) +
-	'&url='+ encodeURIComponent(notification.text) +
+	'&url='+ encodeURIComponent(notification.url) +
 	'&description='+ encodeURIComponent(notification.text);
 
-	req.open('POST', 'https://nma.usk.bz/publicapi/notify?' + params, true);
+	req.open('POST', 'https://notifymyandroid.appspot.com/publicapi/notify?' + params, true);
 	req.send(null);
 }
 
@@ -46,17 +46,23 @@ function load() {
 }
 function sendURL() {
 	var txt = $('urlid');
-	sendMessage(txt.value);
+	sendMessage("Click the URL below to open...", txt.value);
 }
 function sendText() {
 	var txt = $('freetext');
-	sendMessage(txt.value);
+	sendMessage(txt.value, "");
 }
-function sendMessage(text) {
+function sendBoth() {
+	var txt2 = $('urlid');
+	var txt = $('freetext');
+	sendMessage(txt.value, txt2.value);
+}
+function sendMessage(text, urlt) {
 	var notification = {
 		'apikey': options['apikey'],
 		'name': "NotifyMyAndroid Extension",
-		'text': text
+		'text': text,
+		'url': urlt
 	};
 	$('msg').innerHTML = 'Sending notification.';
 	sendNMA(notification);
@@ -67,4 +73,5 @@ function sendMessage(text) {
 document.addEventListener('DOMContentLoaded', function() { 
 	document.querySelector('#sendURL').addEventListener('click', sendURL);
 	document.querySelector('#sendText').addEventListener('click', sendText);
+	document.querySelector('#sendBoth').addEventListener('click', sendBoth);
  });

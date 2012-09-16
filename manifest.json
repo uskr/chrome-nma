@@ -1,6 +1,6 @@
 {
- "name": "NotifyMyAndroid",
- "version": "0.1",
+ "name": "Notify My Android",
+ "version": "0.3",
  "manifest_version" : 2,
  "description": "Sends a link to the currently visited page as a push notification to your Android device.",
  "icons": {
